@@ -1,0 +1,9 @@
+# Root .gitignore
+node_modules/
+.DS_Store
+.env
+
+# Subdirectory ignores
+client/node_modules/
+client/dist/
+server/node_modules/
