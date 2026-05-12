@@ -12,6 +12,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@dataconnect/admin-generated": "file:src/dataconnect-admin-generated",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
@@ -20,10 +21,5 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
-  },
-
-  "scripts": {
-  "start": "node index.js",
-  "dev": "nodemon index.js"
-}
+  }
 }
