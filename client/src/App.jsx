@@ -6,7 +6,7 @@ function App() {
 
   // Testing connection to your Node.js server
   useEffect(() => {
-    fetch('http://localhost:5001/api/data')
+    fetch('http://localhost:5001/api/status')
       .then(res => res.json())
       .then(data => setServerMessage(data.message))
       .catch(err => setServerMessage("Backend offline"));
