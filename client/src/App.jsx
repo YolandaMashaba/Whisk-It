@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, Utensils } from 'lucide-react';
+import { Utensils } from 'lucide-react';
+import { Header } from './components/Index';
+import './App.scss';
 
 function App() {
   const [serverMessage, setServerMessage] = useState("Connecting to backend...");
@@ -13,37 +15,25 @@ function App() {
   }, []);
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      <header style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #ddd', paddingBottom: '10px' }}>
-        <h1> Bakery POS</h1>
-        <div>
-          <ShoppingCart size={24} />
-        </div>
-      </header>
+    <div className="p-5 font-sans">
+      <Header />
 
-      <main style={{ marginTop: '20px' }}>
-        <p><strong>Status:</strong> {serverMessage}</p>
+      <main className="mt-5">
+        <p className="text-base font-semibold">
+          <strong>Status:</strong> {serverMessage}
+        </p>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '15px' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
           {/* Example Item Card */}
-          <button style={cardStyle}>
-            <Utensils size={20} />
-            <p>Croissant</p>
-            <span>R25.00</span>
+          <button className="p-4 rounded-lg border border-gray-300 bg-white hover:shadow-lg cursor-pointer text-center transition-shadow">
+            <Utensils size={20} className="mx-auto mb-2" />
+            <p className="font-medium">Croissant</p>
+            <span className="text-sm text-gray-600">R25.00</span>
           </button>
         </div>
       </main>
     </div>
   );
 }
-
-const cardStyle = {
-  padding: '15px',
-  borderRadius: '8px',
-  border: '1px solid #ccc',
-  background: '#fff',
-  cursor: 'pointer',
-  textAlign: 'center'
-};
 
 export default App;
