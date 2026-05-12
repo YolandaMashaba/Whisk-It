@@ -1,43 +1,13 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+const { app } = require('./server-configuration');
+const ordersRouter = require('./routes/orders');
+const inventoryRouter = require('./routes/inventory');
+const posRouter = require('./routes/pos');
 
-const app = express();
-const PORT = process.env.PORT || 5001;
+app.use('/api/orders', ordersRouter);
+app.use('/api/inventory', inventoryRouter);
+app.use('/api/pos', posRouter);
 
-// --- Middleware ---
-app.use(cors()); // Enable CORS for all routes
-app.use(express.json()); // Parse incoming JSON requests
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-// --- Mock Data (Temporary) ---
-const bakeryItems = [
-    { id: 1, name: "Butter Croissant", price: 25.00, category: "Pastry" },
-    { id: 2, name: "Sourdough Loaf", price: 45.00, category: "Bread" },
-    { id: 3, name: "Chocolate Brownie", price: 30.00, category: "Sweet" }
-];
-
-// --- Routes ---
-
-// Health Check
-app.get('/api/status', (req, res) => {
-    res.json({ 
-        status: 'Online', 
-        message: 'Whisk-It API is kneading dough!',
-        timestamp: new Date()
-    });
-});
-
-// Get all bakery items
-app.get('/api/items', (req, res) => {
-    res.json(bakeryItems);
-});
-
-// --- Server Startup ---
-app.listen(PORT, () => {
-    console.log(`
-    🚀 Whisk-It Server Running
-    -------------------------
-    URL: http://localhost:${PORT}
-    Mode: ${process.env.NODE_ENV}
-    `);
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Six Coach server running on port ${PORT}`));
