@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { ShoppingCart } from 'lucide-react';
 
 const Header = () => {
   return (
