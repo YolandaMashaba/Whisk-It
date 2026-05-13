@@ -1,59 +1,58 @@
 # Whisk-It
 
-Full-stack bakery **POS**: sales floor, **kitchen display (KDS)**, and **admin** inventory and reporting. **React + Vite** client, **Express** API, **SQL Server** (`mssql`).
+Full-stack bakery **POS** with a sales floor, **kitchen display (KDS)**, and **admin** panel for inventory and reporting. Built with **React + Vite** on the frontend and **Express** on the backend, using local **JSON file storage** (no database setup required).
 
 ## Apps (routes)
 
 | Route | Who | Purpose |
 |-------|-----|---------|
-| `/` | Public | **Sales terminal** — category tabs, product tiles, cart, numpad for quantity, **Pay** → `POST /api/orders` |
+| `/` | Public | **Sales terminal** — category tabs, product tiles, cart, numpad for quantity, **Pay** → creates an order |
 | `/login` | Public | Staff JWT login |
-| `/register` | Public | Create account (`is_admin` = false; admins are assigned in Admin → Users) |
-| `/kitchen` | Signed-in | **KDS** — pending orders (grouped), **30s auto-refresh**, color by wait time, **Complete** |
-| `/admin` | Admin only | Inventory CRUD, sales table, charts (daily revenue, top products), date range |
+| `/register` | Public | Create account (first user becomes admin; subsequent users are staff) |
+| `/kitchen` | Signed-in | **KDS** — pending orders with colour-coded urgency, **30s auto-refresh**, **Complete** button |
+| `/admin` | Admin only | Inventory CRUD, sales analytics, top products, recent orders, user management |
 
-Navigation uses **React Router**; the Vite dev server **proxies** `/api` to the backend (see `client/vite.config.js`).
+Navigation uses **React Router**; the Vite dev server **proxies** `/api` requests to the Express backend (see `client/vite.config.js`).
 
-## Structure
+## Project structure
 
 | Directory | Role |
 |-----------|------|
-| `client/` | React UI (Vite) |
+| `client/` | React UI (Vite, Tailwind CSS) |
 | `server/` | Express API |
-| `server/db/schema.sql` | **SSMS** bootstrap: tables + seed users + sample menu |
-| `server/db/migration-add-is-admin.sql` | **Existing DBs:** add `Users.is_admin` without dropping tables |
-
-## Database (SQL Server Management Studio)
-
-1. Create database **`WhiskitDB`** (if it does not exist).
-2. Connect to your instance (example in `.env.example`: **`DESKTOP-0P2GD71`** + **`MSSQLSERVER01`** → `DESKTOP-0P2GD71\MSSQLSERVER01` in SSMS).
-3. Open `server/db/schema.sql` in SSMS with **WhiskitDB** as the current database and execute.
-
-The script **drops and recreates** `Users`, `Items`, `Orders`, and `OrderItems` — use only on a fresh or disposable database.
-
-If you already have a database from an older version without `is_admin`, run **`server/db/migration-add-is-admin.sql`** once (with **WhiskitDB** selected) instead of re-running the full schema.
-
-**Seed logins**
-
-- `admin` / `admin123` — admin role (inventory + reports)
-- `kitchen` / `kitchen123` — staff role (kitchen queue only)
+| `server/db/store.js` | JSON file-based data store |
+| `server/db/storage.json` | Data file (auto-created on first run) |
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (LTS recommended) and npm
-- SQL Server reachable from your machine (see database configuration below)
+- [Node.js](https://nodejs.org/) **v22.12+** (or v20.19+) and npm
+
+No database installation is needed — data is stored in `server/db/storage.json`.
 
 ## Setup
 
-From the repository root:
+From the repository root, install dependencies for all three package.json files:
 
 ```bash
+# 1. Root (installs concurrently for the dev:all script)
 npm install
-npm install --prefix server
+
+# 2. Client
 npm install --prefix client --legacy-peer-deps
+
+# 3. Server
+npm install --prefix server
 ```
 
-The client uses `--legacy-peer-deps` because of a known ESLint peer dependency mismatch on a clean install.
+> The client uses `--legacy-peer-deps` because of a peer dependency mismatch between `eslint-plugin-react` and `eslint@10`.
+
+### Windows — Rolldown native binding
+
+On Windows, the Rolldown native binding (required by Vite 8) may not install automatically due to a [known npm bug with optional dependencies](https://github.com/npm/cli/issues/4828). If the client fails to start with `Cannot find module '@rolldown/binding-win32-x64-msvc'`, install it explicitly:
+
+```bash
+npm install @rolldown/binding-win32-x64-msvc --legacy-peer-deps --prefix client
+```
 
 ### Server environment
 
@@ -61,72 +60,74 @@ The client uses `--legacy-peer-deps` because of a known ESLint peer dependency m
 cp server/.env.example server/.env
 ```
 
-Edit `server/.env` for your machine. The example file uses **`DESKTOP-0P2GD71`** + **`MSSQLSERVER01`** + **`WhiskitDB`**.
+The defaults work out of the box for local development. Key variables:
 
-### Connection string (remote or copy-paste)
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `PORT` | `5001` | API server port |
+| `NODE_ENV` | `development` | Environment mode |
+| `JWT_SECRET` | `change-me-in-production` | Secret for signing JWT tokens |
 
-If SQL Server runs on **another machine** (or you prefer one line from SSMS / Azure), set **`DB_CONNECTION_STRING`** in `server/.env`. When it is set, it **overrides** `DB_SERVER`, `DB_INSTANCE`, `DB_PORT`, `DB_DATABASE`, and the split auth variables.
+## Running the project
 
-Put the whole string in **double quotes** so semicolons are preserved. Example for a remote host with SQL authentication and TCP **1433**:
-
-```env
-DB_CONNECTION_STRING="Server=tcp:192.168.1.50,1433;Database=WhiskitDB;User Id=app_user;Password=your_password;Encrypt=true;TrustServerCertificate=true"
-```
-
-Examples (adjust names, ports, and passwords):
-
-- **Default instance, port 1433:** `Server=tcp:OTHER-PC,1433;Database=WhiskitDB;...`
-- **Named instance:** often `Server=tcp:OTHER-PC\\SQLEXPRESS;Database=WhiskitDB;...` or use the **SQL Server Configuration Manager** port for that instance and connect with `Server=tcp:OTHER-PC,49152;...`
-
-On the **SQL Server** side, the other machine must allow remote connections: enable **TCP/IP** in SQL Server Configuration Manager, open the Windows firewall port (or your cloud NSG), and ensure SQL authentication (mixed mode) or a valid login matches `User Id` / `Password`. The Node app can run on your laptop while the database stays on the server.
-
-### Split variables (local / no connection string)
-
-| Variable | Description |
-|----------|-------------|
-| `PORT` | API port (default `5001`) |
-| `NODE_ENV` | e.g. `development` |
-| **`DB_CONNECTION_STRING`** | **Optional.** If set, used as the full [`node-mssql`](https://github.com/tediousjs/node-mssql) connection string and split `DB_*` settings are ignored |
-| **`DB_SERVER`** | Required **unless** `DB_CONNECTION_STRING` is set — hostname, IP, or logical name |
-| **`DB_SERVER_IP`** | Optional. When set, used as the TCP host **instead of** `DB_SERVER` (fixes Mac **ENOTFOUND** while keeping `DB_SERVER=DESKTOP-…` for your notes) |
-| `DB_INSTANCE` | Optional named instance (for example `MSSQLSERVER01` or `SQLEXPRESS`). Mutually exclusive with `DB_PORT` in tedious |
-| `DB_PORT` | Optional TCP port (for example `1433`). Ignored when `DB_INSTANCE` is set |
-| `DB_DATABASE` | Database name (defaults to `WhiskitDB`) |
-| `DB_TRUSTED_CONNECTION` | `true` for Windows integrated security (default). Set `false` when using SQL login |
-| `DB_USER` / `DB_PASSWORD` | SQL authentication; if both are set, trusted connection is turned off |
-| `DB_ENCRYPT` | Optional; when set, toggles encryption for the driver |
-| `DB_TRUST_SERVER_CERTIFICATE` | Default `true` (typical for local/dev) |
-| `DB_ENABLE_ARITH_ABORT` | Default `true` |
-| `JWT_SECRET` | Sign and verify tokens; set in production |
-
-JWT verification falls back to a dev default only when `JWT_SECRET` is unset (see `server/index.js`).
-
-## Run everything (recommended)
+### Start both client and server (recommended)
 
 ```bash
 npm run dev:all
 ```
 
-This starts the Vite dev server and the API with nodemon, with labeled logs (`client` / `server`).
+This uses `concurrently` to run both apps with labelled output (`client` / `server`).
 
-- **Client:** [http://localhost:5173](http://localhost:5173) (Vite default)
-- **API:** [http://localhost:5001](http://localhost:5001) (default; override with `PORT` in `.env`)
+- **Client:** [http://localhost:5173](http://localhost:5173)
+- **Server:** [http://localhost:5001](http://localhost:5001)
 
-## Run apps separately
+### Run apps separately
 
 ```bash
+# Client (Vite dev server with HMR)
 npm run dev --prefix client
+
+# Server (nodemon with auto-restart)
 npm run dev --prefix server
 ```
 
-Production-style server start:
+Production-style server start (no auto-restart):
 
 ```bash
 npm start --prefix server
 ```
 
-## Client build
+### Client build
 
 ```bash
 npm run build --prefix client
 ```
+
+## First-time usage
+
+1. Open [http://localhost:5173/register](http://localhost:5173/register) and create an account. The **first user** is automatically an admin.
+2. Log in and navigate to **Admin → Inventory** to add bakery items (name, price, category, stock).
+3. The **Sales terminal** (`/`) displays items from the API. Tap products, adjust quantities, and hit **Pay** to create orders.
+4. The **Kitchen** (`/kitchen`) shows pending orders and lets staff mark them as complete.
+5. **Admin → Sales Analytics** shows revenue, top products, and recent orders — all computed from real data.
+
+## API endpoints
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `GET` | `/api/status` | — | Health check |
+| `POST` | `/api/auth/login` | — | Login (returns JWT) |
+| `POST` | `/api/auth/register` | — | Register new user |
+| `GET` | `/api/items` | — | List active menu items |
+| `POST` | `/api/items` | Admin | Create item |
+| `PUT` | `/api/items/:id` | Admin | Update item |
+| `DELETE` | `/api/items/:id` | Admin | Deactivate item |
+| `POST` | `/api/orders` | — | Place an order |
+| `GET` | `/api/orders/pending` | Auth | Pending orders (kitchen) |
+| `PUT` | `/api/orders/:id/complete` | Auth | Mark order complete |
+| `GET` | `/api/admin/items` | Admin | All items (including inactive) |
+| `GET` | `/api/admin/users` | Admin | List users |
+| `PATCH` | `/api/admin/users/:id` | Admin | Update user admin status |
+| `GET` | `/api/admin/orders` | Admin | All orders (with date filters) |
+| `GET` | `/api/reports/sales` | Admin | Sales report by day |
+| `GET` | `/api/reports/top-products` | Admin | Top selling products |

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Package, BarChart3, Settings, Home, Menu, X, LogOut } from 'lucide-react';
 import { Button, Card } from '@/components/Index';
 import { useAuth } from '@/context/AuthContext';
+import { getSalesReport, getAdminOrders } from '@/api/Index';
 import Inventory from './Inventory';
 import SalesAnalytics from './SalesAnalytics';
 import SystemConfig from './SystemConfig';
@@ -31,7 +32,51 @@ const AdminDashboard = () => {
     }
   };
 
-  const DashboardOverview = () => (
+  const DashboardOverview = () => {
+    const [stats, setStats] = useState({ totalOrders: 0, revenue: 0, itemsSold: 0, avgOrder: 0 });
+    const [recentOrders, setRecentOrders] = useState([]);
+    const [statsLoading, setStatsLoading] = useState(true);
+
+    const fetchDashboardData = useCallback(async () => {
+      try {
+        setStatsLoading(true);
+        const [salesData, ordersData] = await Promise.all([
+          getSalesReport(),
+          getAdminOrders(),
+        ]);
+
+        const totalOrders = Array.isArray(ordersData) ? ordersData.length : 0;
+        const revenue = Array.isArray(salesData)
+          ? salesData.reduce((sum, day) => sum + (day.total_revenue || 0), 0)
+          : 0;
+        const itemsSold = Array.isArray(salesData)
+          ? salesData.reduce((sum, day) => sum + (day.total_items || 0), 0)
+          : 0;
+        const avgOrder = totalOrders > 0 ? revenue / totalOrders : 0;
+
+        setStats({ totalOrders, revenue, itemsSold, avgOrder });
+
+        const recent = Array.isArray(ordersData)
+          ? ordersData
+              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+              .slice(0, 5)
+          : [];
+        setRecentOrders(recent);
+      } catch (err) {
+        console.error('Error fetching dashboard data:', err);
+      } finally {
+        setStatsLoading(false);
+      }
+    }, []);
+
+    useEffect(() => { fetchDashboardData(); }, [fetchDashboardData]);
+
+    function formatTime(dateStr) {
+      if (!dateStr) return '';
+      return new Date(dateStr).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    return (
     <div>
       <Card title="Dashboard Overview" subtitle="Welcome to the Whisk-It Admin Panel">
         <div style={{ 
@@ -246,7 +291,7 @@ const AdminDashboard = () => {
           gridTemplateColumns: '2fr 1fr', 
           gap: '24px' 
         }}>
-          <Card title="Quick Stats" subtitle="Today's performance">
+          <Card title="Quick Stats" subtitle="Overall performance">
             <div style={{ 
               padding: '20px',
               display: 'grid', 
@@ -264,7 +309,7 @@ const AdminDashboard = () => {
                   Total Orders
                 </h4>
                 <p style={{ margin: 0, color: '#8b4513', fontSize: '24px', fontWeight: '700' }}>
-                  47
+                  {statsLoading ? '…' : stats.totalOrders}
                 </p>
               </div>
               <div style={{ 
@@ -278,7 +323,7 @@ const AdminDashboard = () => {
                   Revenue
                 </h4>
                 <p style={{ margin: 0, color: '#c19a6b', fontSize: '24px', fontWeight: '700' }}>
-                  R2,150
+                  {statsLoading ? '…' : `R${stats.revenue.toFixed(2)}`}
                 </p>
               </div>
               <div style={{ 
@@ -292,7 +337,7 @@ const AdminDashboard = () => {
                   Items Sold
                 </h4>
                 <p style={{ margin: 0, color: '#a0826d', fontSize: '24px', fontWeight: '700' }}>
-                  156
+                  {statsLoading ? '…' : stats.itemsSold}
                 </p>
               </div>
               <div style={{ 
@@ -306,56 +351,51 @@ const AdminDashboard = () => {
                   Avg Order
                 </h4>
                 <p style={{ margin: 0, color: '#d4a574', fontSize: '24px', fontWeight: '700' }}>
-                  R45
+                  {statsLoading ? '…' : `R${stats.avgOrder.toFixed(2)}`}
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card title="Recent Activity" subtitle="Latest system events">
+          <Card title="Recent Orders" subtitle="Latest orders placed">
             <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
-              {[
-                { time: '10:45 AM', event: 'New order received', type: 'order' },
-                { time: '10:30 AM', event: 'Low stock alert: Croissants', type: 'warning' },
-                { time: '09:15 AM', event: 'John logged in', type: 'user' },
-                { time: '08:45 AM', event: 'Daily sales report generated', type: 'report' },
-                { time: '08:00 AM', event: 'System backup completed', type: 'system' },
-              ].map((activity, index) => (
-                <div key={index} style={{
-                  padding: '12px',
-                  borderBottom: '1px solid rgba(139, 69, 19, 0.1)',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center'
-                }}>
-                  <div>
-                    <p style={{ margin: '0 0 4px 0', color: '#8b4513', fontSize: '14px' }}>
-                      {activity.event}
-                    </p>
-                    <p style={{ margin: 0, color: '#a0826d', fontSize: '12px' }}>
-                      {activity.time}
-                    </p>
+              {statsLoading ? (
+                <p style={{ padding: '12px', color: '#a0826d', fontSize: '14px' }}>Loading…</p>
+              ) : recentOrders.length === 0 ? (
+                <p style={{ padding: '12px', color: '#a0826d', fontSize: '14px' }}>No orders yet</p>
+              ) : (
+                recentOrders.map((order) => (
+                  <div key={order.id} style={{
+                    padding: '12px',
+                    borderBottom: '1px solid rgba(139, 69, 19, 0.1)',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                  }}>
+                    <div>
+                      <p style={{ margin: '0 0 4px 0', color: '#8b4513', fontSize: '14px' }}>
+                        Order #{order.id} — R{Number(order.total_amount).toFixed(2)}
+                      </p>
+                      <p style={{ margin: 0, color: '#a0826d', fontSize: '12px' }}>
+                        {formatTime(order.created_at)} · {order.status || 'pending'}
+                      </p>
+                    </div>
+                    <div style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      backgroundColor: order.status === 'completed' ? '#16a34a' : '#c19a6b'
+                    }} />
                   </div>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    backgroundColor: {
-                      order: '#c19a6b',
-                      warning: '#d4a574',
-                      user: '#a0826d',
-                      report: '#8b4513',
-                      system: '#6b4423'
-                    }[activity.type]
-                  }} />
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </Card>
         </div>
       </Card>
     </div>
-  );
+    );
+  };
 
   return (
     <div style={{ 
