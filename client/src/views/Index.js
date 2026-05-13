@@ -1,5 +1,3 @@
-
-export { default as Dashboard } from './admin/AdminDashboard';
 export { default as Inventory } from './admin/Inventory';
 export { default as SalesAnalytics } from './admin/SalesAnalytics';
 export { default as SystemConfig } from './admin/SystemConfig';
