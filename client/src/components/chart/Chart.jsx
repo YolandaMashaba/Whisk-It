@@ -2,7 +2,7 @@ import React from 'react';
 
 const Chart = ({ type, data, title, height = 300, color = '#d4a574' }) => {
   const renderBarChart = () => {
-    const maxValue = Math.max(...data.map(d => d.value));
+    const maxValue = Math.max(...data.map(d => d.value), 1);
     const barWidth = 100 / data.length - 10;
     
     return (
@@ -85,6 +85,7 @@ const Chart = ({ type, data, title, height = 300, color = '#d4a574' }) => {
     const last = Math.max(data.length - 1, 1);
     const yTop = 10;
     const yBottom = 90;
+      const x = (index / xDenom) * 100;
     const ySpan = yBottom - yTop;
 
     const yForValue = (v) => yBottom - (v / maxValue) * ySpan;

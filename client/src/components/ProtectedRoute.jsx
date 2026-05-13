@@ -1,9 +1,11 @@
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import Login from '../pages/Login';
+import { Navigate, useLocation } from 'react-router-dom';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading, login } = useAuth();
+    const location = useLocation();
 
   if (loading) {
     // Show loading spinner while checking authentication
@@ -29,11 +31,13 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  if (!isAuthenticated) {
-    return <Login onLogin={login} />;
-  }
-
-  return children;
+    if (!isAuthenticated) {
+        return <Navigate to="/login" state={{ from: location }} replace />;
+    }
+    if (adminOnly && !isAdmin) {
+        return <Navigate to="/" replace />;
+    }
+    return children;
 };
 
 export default ProtectedRoute;
