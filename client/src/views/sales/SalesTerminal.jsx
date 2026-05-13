@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { createOrder, getItems } from '../../api/Index';
-import NumpadModal from '../components/NumpadModal';
-import { Button } from '../../components/Index';
+import { createOrder, getItems } from '@/api/Index';
+import { Button, NumpadModal } from '@/components/Index';
 
 const CATEGORY_BG = {
     Breads: 'bg-amber-100 border-amber-300',

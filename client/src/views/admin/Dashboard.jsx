@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Package, BarChart3, Settings, Home, Menu, X, LogOut } from 'lucide-react';
-import { Button, Card } from '../../components/Index';
-import { useAuth } from '../../contexts/AuthContext';
+import { Button, Card } from '@/components/Index';
+import { useAuth } from '@/context/AuthContext';
 import Inventory from './Inventory';
 import SalesAnalytics from './SalesAnalytics';
 import SystemConfig from './SystemConfig';

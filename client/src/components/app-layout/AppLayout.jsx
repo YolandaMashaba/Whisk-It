@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { ChefHat, CupSoda, LayoutDashboard, LogIn, LogOut, UserPlus } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
 
 function navClass({ isActive }) {
     return [

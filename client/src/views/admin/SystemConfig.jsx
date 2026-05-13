@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Settings, Users, Store, Percent, Save, Edit2 } from 'lucide-react';
-import { Button, Input, Card, Table } from '../../components/Index';
+import { Button, Input, Card, Table } from '@/components/Index';
 
 const SystemConfig = () => {
   const [config, setConfig] = useState({

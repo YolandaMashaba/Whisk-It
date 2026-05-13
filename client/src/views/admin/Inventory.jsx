@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, Save, X } from 'lucide-react';
-import { Button, Input, Card, Table } from '../../components/Index';
+import { Button, Input, Card, Table } from '@/components/Index';
 
 const Inventory = () => {
   const [items, setItems] = useState([]);

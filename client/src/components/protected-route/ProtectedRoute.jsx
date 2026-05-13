@@ -1,10 +1,10 @@
 import React from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import Login from '../../views/Login';
+import { useAuth } from '@/context/AuthContext';
+import {Login} from '@/views/Index';
 import { Navigate, useLocation } from 'react-router-dom';
 
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, loading, login } = useAuth();
+const ProtectedRoute = ({ children, adminOnly }) => {
+  const { isAuthenticated, loading, login, isAdmin } = useAuth();
     const location = useLocation();
 
   if (loading) {

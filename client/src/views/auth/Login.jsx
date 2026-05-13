@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Lock, User, Eye, EyeOff, Cake } from 'lucide-react';
-import { Button, Card } from '../components/Index';
+import { Button, Card } from '@/components/Index';
+import { useAuth } from '@/context/AuthContext';
+import { Link, Navigate } from 'react-router-dom';
 
 const Login = ({ onLogin }) => {
+  const { login, isAuthenticated, user } = useAuth();
   const [credentials, setCredentials] = useState({
     username: '',
     password: ''
@@ -10,6 +13,12 @@ const Login = ({ onLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Redirect if already authenticated
+  if (isAuthenticated) {
+    const dest = user?.is_admin || user?.role === 'admin' ? '/admin' : '/kitchen';
+    return <Navigate to={dest} replace />;
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,16 +34,14 @@ const Login = ({ onLogin }) => {
     setError('');
     setLoading(true);
 
-    // Simulate authentication delay
-    setTimeout(() => {
-      // Simple authentication check (in real app, this would be an API call)
-      if (credentials.username === 'admin' && credentials.password === 'whiskit123') {
-        onLogin({ username: credentials.username });
-      } else {
-        setError('Invalid username or password');
-      }
+    try {
+      await login(credentials.username, credentials.password);
+      // Login successful - AuthContext will handle the redirect
+    } catch (err) {
+      setError(err.message || 'Login failed');
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   const loginContainerStyle = {
@@ -245,6 +252,12 @@ const Login = ({ onLogin }) => {
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </Button>
+          <p className="mt-4 text-center text-sm text-[#a0826d]">
+                    New here?{' '}
+                    <Link to="/register" className="font-semibold text-[#8b4513] underline">
+                        Create an account
+                    </Link>
+                </p>
         </form>
 
         {/* <div style={demoInfoStyle}>

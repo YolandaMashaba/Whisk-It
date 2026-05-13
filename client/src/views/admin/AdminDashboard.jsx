@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import Chart from '../../components/chart/Chart';
-import { Button, Input, Table } from '../../components/Index';
-import { useAuth } from '../../context/AuthContext';
+import Chart from '@/components/chart/Chart';
+import { Button, Input, Table } from '@/components/Index';
+import { useAuth } from '@/context/AuthContext';
 import {
     createItem,
     deactivateItem,

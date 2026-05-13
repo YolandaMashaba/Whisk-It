@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, DollarSign, ShoppingCart, Calendar, Package } from 'lucide-react';
-import { Card, Button, Chart } from '../../components/Index';
+import { Card, Button, Chart } from '@/components/Index';
 
 const SalesAnalytics = () => {
   const [analytics, setAnalytics] = useState({
