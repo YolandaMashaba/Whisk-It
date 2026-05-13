@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, DollarSign, ShoppingCart, Calendar, Package } from 'lucide-react';
 import { Card, Button, Chart } from '@/components/Index';
+import { getSalesReport, getTopProducts, getAdminOrders } from '@/api/Index';
 
 const SalesAnalytics = () => {
   const [analytics, setAnalytics] = useState({
@@ -21,35 +22,77 @@ const SalesAnalytics = () => {
 
   const fetchAnalytics = async () => {
     try {
-      // Enhanced mock data with realistic bakery analytics[cite: 1]
-      const mockAnalytics = {
-        totalRevenue: 15420.50,
-        dailyRevenue: 2150.75,
-        weeklyRevenue: 12450.25,
-        monthlyRevenue: 48650.00,
-        bestSellers: [
-          { name: 'Croissant', quantity: 145, revenue: 3625.00 },
-          { name: 'Pumpkin Spice Muffin', quantity: 89, revenue: 3115.00 },
-          { name: 'Chocolate Chip Cookie', quantity: 234, revenue: 3510.00 },
-          { name: 'Sourdough Bread', quantity: 67, revenue: 3015.00 },
-          { name: 'Cinnamon Roll', quantity: 156, revenue: 2808.00 },
-          { name: 'Blueberry Scone', quantity: 98, revenue: 1960.00 }
-        ],
-        recentOrders: [
-          { id: 1, date: '2026-05-12', items: 3, total: 85.00, customer: 'John Doe' },
-          { id: 2, date: '2026-05-12', items: 5, total: 125.50, customer: 'Jane Smith' },
-          { id: 3, date: '2026-05-11', items: 2, total: 45.00, customer: 'Bob Johnson' },
-          { id: 4, date: '2026-05-11', items: 8, total: 210.75, customer: 'Alice Brown' },
-          { id: 5, date: '2026-05-10', items: 4, total: 95.25, customer: 'Charlie Wilson' }
-        ],
-        categoryData: [
-          { label: 'Pastries', value: 45, color: '#d4a574' },
-          { label: 'Breads', value: 25, color: '#c19a6b' },
-          { label: 'Cakes', value: 20, color: '#a0826d' },
-          { label: 'Beverages', value: 10, color: '#8b4513' }
-        ]
-      };
-      setAnalytics(prev => ({ ...prev, ...mockAnalytics }));
+      setLoading(true);
+
+      // Fetch sales report data
+      const salesData = await getSalesReport();
+      const topProductsData = await getTopProducts();
+      const ordersData = await getAdminOrders();
+
+      const allOrders = Array.isArray(ordersData) ? ordersData : [];
+      const salesDays = Array.isArray(salesData) ? salesData : [];
+      const topProducts = Array.isArray(topProductsData) ? topProductsData : [];
+
+      const totalRevenue = salesDays.reduce((sum, day) => sum + (day.total_revenue || 0), 0);
+
+      const today = new Date().toISOString().split('T')[0];
+      const todayData = salesDays.find(day => day.date === today);
+      const dailyRevenue = todayData ? todayData.total_revenue : 0;
+
+      const now = new Date();
+      const weekAgo = new Date(now);
+      weekAgo.setDate(weekAgo.getDate() - 7);
+      const weeklyRevenue = allOrders
+        .filter(o => new Date(o.created_at) >= weekAgo)
+        .reduce((sum, o) => sum + (o.total_amount || 0), 0);
+
+      const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+      const monthlyRevenue = allOrders
+        .filter(o => new Date(o.created_at) >= monthStart)
+        .reduce((sum, o) => sum + (o.total_amount || 0), 0);
+
+      const recentOrders = allOrders
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        .slice(0, 5)
+        .map(order => ({
+          id: order.id,
+          date: order.created_at ? order.created_at.split('T')[0] : '',
+          items: order.orderItems ? order.orderItems.length : 0,
+          total: order.total_amount,
+          customer: `Order #${order.id}`
+        }));
+
+      const bestSellers = topProducts.map(product => ({
+        name: product.name,
+        quantity: product.total_quantity,
+        revenue: product.total_revenue
+      }));
+
+      const categoryMap = {};
+      const categoryColors = ['#d4a574', '#c19a6b', '#a0826d', '#8b4513', '#654321', '#432818'];
+      allOrders.forEach(order => {
+        (order.orderItems || []).forEach(item => {
+          const cat = item.category || 'Other';
+          categoryMap[cat] = (categoryMap[cat] || 0) + ((item.price || 0) * (item.quantity || 1));
+        });
+      });
+      const categoryData = Object.entries(categoryMap).map(([label, value], i) => ({
+        label,
+        value,
+        color: categoryColors[i % categoryColors.length]
+      }));
+
+      setAnalytics({
+        totalRevenue,
+        dailyRevenue,
+        weeklyRevenue,
+        monthlyRevenue,
+        bestSellers,
+        recentOrders,
+        timeRange: 'week',
+        categoryData
+      });
+
       setLoading(false);
     } catch (error) {
       console.error('Error fetching analytics:', error);
@@ -329,32 +372,28 @@ const SalesAnalytics = () => {
             value={analytics.totalRevenue}
             icon={DollarSign}
             color="#16a34a"
-            trend={12.5}
-            subtitle="vs last month"
+            subtitle="all time"
           />
           <StatCard
             title="Daily Revenue"
             value={analytics.dailyRevenue}
             icon={TrendingUp}
             color="#8b4513"
-            trend={8.2}
-            subtitle="vs yesterday"
+            subtitle="today"
           />
           <StatCard
             title="Weekly Revenue"
             value={analytics.weeklyRevenue}
             icon={Calendar}
             color="#d4a574"
-            trend={-3.1}
-            subtitle="vs last week"
+            subtitle="last 7 days"
           />
           <StatCard
             title="Monthly Revenue"
             value={analytics.monthlyRevenue}
             icon={DollarSign}
             color="#c19a6b"
-            trend={15.7}
-            subtitle="vs last month"
+            subtitle="this month"
           />
         </div>
 

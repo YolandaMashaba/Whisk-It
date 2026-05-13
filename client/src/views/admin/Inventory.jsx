@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, Save, X } from 'lucide-react';
 import { Button, Input, Card, Table } from '@/components/Index';
+import { getAdminItems, createItem, updateItem, deleteItem } from '@/api/Index';
 
 const Inventory = () => {
   const [items, setItems] = useState([]);
@@ -22,14 +23,18 @@ const Inventory = () => {
 
   const fetchInventory = async () => {
     try {
-      // Mock data for now - replace with actual API call
-      const mockData = [
-        { id: 1, name: 'Croissant', price: 25.00, category: 'Pastries', stock: 50, description: 'Buttery French croissant', inStock: true },
-        { id: 2, name: 'Pumpkin Spice Muffin', price: 35.00, category: 'Seasonal', stock: 20, description: 'Fall seasonal favorite', inStock: true },
-        { id: 3, name: 'Sourdough Bread', price: 45.00, category: 'Breads', stock: 0, description: 'Artisan sourdough', inStock: false },
-        { id: 4, name: 'Chocolate Chip Cookie', price: 15.00, category: 'Cookies', stock: 100, description: 'Classic chocolate chip', inStock: true },
-      ];
-      setItems(mockData);
+      const data = await getAdminItems();
+      // Transform API data to component format
+      const transformedData = data.map(item => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        category: item.category,
+        stock: item.stock_quantity,
+        description: item.name, // Using name as description for now
+        inStock: item.active === 1
+      }));
+      setItems(transformedData);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching inventory:', error);
@@ -71,25 +76,27 @@ const Inventory = () => {
 
   const handleSave = async () => {
     try {
+      const itemData = {
+        name: formData.name,
+        price: parseFloat(formData.price),
+        category: formData.category,
+        stock_quantity: parseInt(formData.stock),
+        active: formData.inStock ? 1 : 0
+      };
+
       if (editingItem) {
         // Update existing item
-        setItems(prev => prev.map(item => 
-          item.id === editingItem 
-            ? { ...item, ...formData, price: parseFloat(formData.price), stock: parseInt(formData.stock) }
-            : item
-        ));
+        await updateItem(editingItem, itemData);
         setEditingItem(null);
       } else if (isAdding) {
         // Add new item
-        const newItem = {
-          id: Math.max(...items.map(i => i.id)) + 1,
-          ...formData,
-          price: parseFloat(formData.price),
-          stock: parseInt(formData.stock)
-        };
-        setItems(prev => [...prev, newItem]);
+        await createItem(itemData);
         setIsAdding(false);
       }
+
+      // Refresh the inventory list
+      await fetchInventory();
+
       setFormData({
         name: '',
         price: '',
@@ -106,7 +113,9 @@ const Inventory = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this item?')) {
       try {
-        setItems(prev => prev.filter(item => item.id !== id));
+        await deleteItem(id);
+        // Refresh the inventory list
+        await fetchInventory();
       } catch (error) {
         console.error('Error deleting item:', error);
       }

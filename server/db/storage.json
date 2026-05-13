@@ -23,14 +23,28 @@
       "category": "Bread",
       "stock_quantity": 14,
       "active": 1
+    },
+    {
+      "id": 2,
+      "name": "latte",
+      "price": 24,
+      "category": "Coffee",
+      "stock_quantity": 11,
+      "active": 1
     }
   ],
   "orders": [
     {
       "id": 1,
       "total_amount": 5,
-      "status": "pending",
+      "status": "completed",
       "created_at": "2026-05-13T20:13:47.451Z"
+    },
+    {
+      "id": 2,
+      "total_amount": 24,
+      "status": "completed",
+      "created_at": "2026-05-13T21:15:15.857Z"
     }
   ],
   "orderItems": [
@@ -40,6 +54,13 @@
       "item_id": 1,
       "quantity": 1,
       "price": 5
+    },
+    {
+      "id": 2,
+      "order_id": 2,
+      "item_id": 2,
+      "quantity": 1,
+      "price": 24
     }
   ]
 }
