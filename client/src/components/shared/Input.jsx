@@ -10,6 +10,7 @@ const Input = ({
   disabled = false, 
   required = false,
   className = '',
+  noMargin = false,
   ...props 
 }) => {
   const inputStyles = {
@@ -41,7 +42,7 @@ const Input = ({
   };
 
   const containerStyles = {
-    marginBottom: '16px',
+    marginBottom: noMargin ? 0 : '16px',
   };
 
   return (

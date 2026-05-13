@@ -195,7 +195,7 @@ const Inventory = () => {
   ];
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: '20px 0 20px 0' }}>
       <Card title="Inventory Control" subtitle="Manage your bakery items">
         <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ margin: 0, color: '#8B4513' }}>Menu Items</h2>

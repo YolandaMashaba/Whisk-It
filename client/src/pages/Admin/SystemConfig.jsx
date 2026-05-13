@@ -191,13 +191,11 @@ const SystemConfig = () => {
   const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
   return (
-    <div style={{ padding: '20px' }}>
-      {/* Added marginBottom to separate top cards from the table below[cite: 1] */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '32px' }}>
+    <div style={{ padding: '24px 0 24px 0' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px', marginBottom: '36px' }}>
         <Card title="Bakery Settings" subtitle="Configure your bakery information">
-          {/* Added flex column with gap to prevent input squishing[cite: 1, 2] */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
               <h3 style={{ margin: 0, color: '#8B4513', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Store size={20} />
                 General Settings
@@ -217,25 +215,36 @@ const SystemConfig = () => {
               onChange={handleConfigChange}
               disabled={!editingConfig}
             />
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-              <Input
-                label="Tax Rate (%)"
-                name="taxRate"
-                type="number"
-                value={config.taxRate}
-                onChange={handleConfigChange}
-                disabled={!editingConfig}
-              />
-              <Input
-                label="Currency"
-                name="currency"
-                value={config.currency}
-                onChange={handleConfigChange}
-                disabled={!editingConfig}
-              />
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+              columnGap: '48px',
+              rowGap: '20px'
+            }}>
+              <div style={{ minWidth: 0 }}>
+                <Input
+                  label="Tax Rate (%)"
+                  name="taxRate"
+                  type="number"
+                  value={config.taxRate}
+                  onChange={handleConfigChange}
+                  disabled={!editingConfig}
+                  noMargin
+                />
+              </div>
+              <div style={{ minWidth: 0 }}>
+                <Input
+                  label="Currency"
+                  name="currency"
+                  value={config.currency}
+                  onChange={handleConfigChange}
+                  disabled={!editingConfig}
+                  noMargin
+                />
+              </div>
             </div>
             {editingConfig && (
-              <div style={{ marginTop: '8px' }}>
+              <div style={{ marginTop: '4px' }}>
                 <Button variant="success" onClick={handleSaveConfig}>
                   <Save size={16} />
                   Save Settings
@@ -250,10 +259,10 @@ const SystemConfig = () => {
             {days.map((day) => (
               <div key={day} style={{
                 display: 'grid',
-                gridTemplateColumns: '100px 1fr 1fr 80px',
-                gap: '12px',
+                gridTemplateColumns: 'minmax(88px, 110px) minmax(0, 1fr) auto',
+                gap: '16px',
                 alignItems: 'center',
-                padding: '12px',
+                padding: '16px 4px',
                 borderBottom: '1px solid #E6D4BC',
                 backgroundColor: config.businessHours[day].closed ? '#F5F5F5' : 'transparent'
               }}>
@@ -264,20 +273,39 @@ const SystemConfig = () => {
                 }}>
                   {day}
                 </span>
-                <Input
-                  type="time"
-                  value={config.businessHours[day].open}
-                  onChange={(e) => handleHoursChange(day, 'open', e.target.value)}
-                  disabled={!editingConfig || config.businessHours[day].closed}
-                  style={{ margin: 0 }}
-                />
-                <Input
-                  type="time"
-                  value={config.businessHours[day].close}
-                  onChange={(e) => handleHoursChange(day, 'close', e.target.value)}
-                  disabled={!editingConfig || config.businessHours[day].closed}
-                  style={{ margin: 0 }}
-                />
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  minWidth: 0,
+                  width: '100%',
+                }}>
+                  <div style={{ flex: '1 1 0', minWidth: 0 }}>
+                    <Input
+                      type="time"
+                      value={config.businessHours[day].open}
+                      onChange={(e) => handleHoursChange(day, 'open', e.target.value)}
+                      disabled={!editingConfig || config.businessHours[day].closed}
+                      noMargin
+                    />
+                  </div>
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      width: '40px',
+                      minWidth: '40px',
+                      flexShrink: 0,
+                    }}
+                  />
+                  <div style={{ flex: '1 1 0', minWidth: 0 }}>
+                    <Input
+                      type="time"
+                      value={config.businessHours[day].close}
+                      onChange={(e) => handleHoursChange(day, 'close', e.target.value)}
+                      disabled={!editingConfig || config.businessHours[day].closed}
+                      noMargin
+                    />
+                  </div>
+                </div>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <input
                     type="checkbox"

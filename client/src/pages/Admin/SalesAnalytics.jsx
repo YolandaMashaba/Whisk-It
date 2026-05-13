@@ -43,15 +43,6 @@ const SalesAnalytics = () => {
           { id: 4, date: '2026-05-11', items: 8, total: 210.75, customer: 'Alice Brown' },
           { id: 5, date: '2026-05-10', items: 4, total: 95.25, customer: 'Charlie Wilson' }
         ],
-        revenueData: [
-          { label: 'Mon', value: 1850 },
-          { label: 'Tue', value: 2200 },
-          { label: 'Wed', value: 1950 },
-          { label: 'Thu', value: 2450 },
-          { label: 'Fri', value: 2850 },
-          { label: 'Sat', value: 2100 },
-          { label: 'Sun', value: 1750 }
-        ],
         categoryData: [
           { label: 'Pastries', value: 45, color: '#d4a574' },
           { label: 'Breads', value: 25, color: '#c19a6b' },
@@ -279,7 +270,7 @@ const SalesAnalytics = () => {
   }
 
   return (
-    <div style={{ padding: '24px' }}>
+    <div style={{ padding: '24px 0 24px 0' }}>
       <Card title="Sales Analytics" subtitle="Comprehensive bakery performance insights">
         {/* Time Range Selector */}
         <div style={{ 
@@ -368,23 +359,16 @@ const SalesAnalytics = () => {
           />
         </div>
 
-        {/* Charts Section - Fixed Squishing[cite: 1, 2] */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: '2fr 1fr', 
-          gap: '24px', 
-          marginBottom: '32px' 
-        }}>
-          <div style={{ marginTop: '24px' }}>
-            <Chart
-              type="line"
-              title="Revenue Trend"
-              data={analytics.revenueData}
-              height={250}
-              color="#8b4513"
-            />
-          </div>
-          <div style={{ marginTop: '24px' }}>
+        <div
+          style={{
+            marginBottom: '32px',
+            marginTop: '8px',
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
+          }}
+        >
+          <div style={{ width: '100%', maxWidth: '480px' }}>
             <Chart
               type="pie"
               title="Sales by Category"

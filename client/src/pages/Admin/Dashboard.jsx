@@ -520,7 +520,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div style={{ flex: 1, padding: '24px', overflowY: 'auto', background: 'rgba(255, 253, 250, 0.3)' }}>
+      <div style={{ flex: 1, padding: '24px 12px 24px 12px', overflowY: 'auto', background: 'rgba(255, 253, 250, 0.3)' }}>
         {renderContent()}
       </div>
     </div>
