@@ -32,14 +32,14 @@ const Card = ({
 
   const paddings = {
     none: { padding: '0' },
-    small: { padding: '12px' },
-    medium: { padding: '20px' },
-    large: { padding: '28px' }
+    small: { padding: '16px' },
+    medium: { padding: '24px' },
+    large: { padding: '32px' }
   };
 
   const headerStyles = {
     borderBottom: title ? '1px solid rgba(139, 69, 19, 0.1)' : 'none',
-    padding: padding !== 'none' ? '20px 20px 16px' : '16px',
+    padding: padding !== 'none' ? '24px 24px 18px' : '16px',
     backgroundColor: 'rgba(255, 253, 250, 0.8)',
   };
 
@@ -57,12 +57,10 @@ const Card = ({
     fontWeight: '400',
   };
 
-  const bodyStyles = {
-    padding: padding !== 'none' ? paddings[padding] : paddings.medium,
-  };
+  const bodyStyles =
+    padding === 'none' ? paddings.none : (paddings[padding] || paddings.medium);
 
   const currentVariant = variants[variant] || variants.default;
-  const currentPadding = paddings[padding] || paddings.medium;
 
   const combinedStyles = {
     ...baseStyles,

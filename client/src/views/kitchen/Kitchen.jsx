@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { completeOrder, getPendingOrders } from '../api/Index';
-import { Button } from '../components/Index';
+import { completeOrder, getPendingOrders } from '@/api/Index';
+import { Button } from '@/components/Index';
 
 function urgencyClass(createdAt) {
     const mins = (Date.now() - new Date(createdAt).getTime()) / 60000;
@@ -16,7 +16,7 @@ function elapsedLabel(createdAt) {
     return `${m}m ${r}s`;
 }
 
-export default function KitchenDisplay() {
+export default function Kitchen() {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');

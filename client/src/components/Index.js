@@ -3,3 +3,7 @@ export { default as Input } from './input/Input';
 export { default as Card } from './card/Card';
 export { default as Table } from './table/Table';
 export { default as Header } from './header/Header';
+export { default as Chart } from './chart/Chart';
+export { default as AppLayout } from './app-layout/AppLayout';
+export { default as NumpadModal } from './numpad-modal/NumpadModal';
+export { default as ProtectedRoute } from './protected-route/ProtectedRoute';

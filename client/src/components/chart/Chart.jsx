@@ -81,90 +81,107 @@ const Chart = ({ type, data, title, height = 300, color = '#d4a574' }) => {
   };
 
   const renderLineChart = () => {
-    const maxValue = Math.max(...data.map(d => d.value), 1);
-    const xDenom = Math.max(data.length - 1, 1);
-    const points = data.map((item, index) => {
+    const maxValue = Math.max(...data.map((d) => d.value), 1e-9);
+    const last = Math.max(data.length - 1, 1);
+    const yTop = 10;
+    const yBottom = 90;
       const x = (index / xDenom) * 100;
-      const y = 100 - (item.value / maxValue) * 100;
-      return `${x},${y}`;
-    }).join(' ');
+    const ySpan = yBottom - yTop;
+
+    const yForValue = (v) => yBottom - (v / maxValue) * ySpan;
+
+    const points = data
+      .map((item, index) => {
+        const x = (index / last) * 100;
+        const y = yForValue(item.value);
+        return `${x},${y}`;
+      })
+      .join(' ');
+
+    const gridYs = [0, 0.25, 0.5, 0.75, 1].map((t) => yTop + t * ySpan);
 
     return (
-      <div style={{ position: 'relative', height: `${height}px` }}>
-        <svg
-          width="100%"
-          height="100%"
-          viewBox="0 0 100 100"
-          style={{ overflow: 'visible' }}
-        >
-          {/* Grid lines */}
-          {[0, 25, 50, 75, 100].map((y, i) => (
-            <line
-              key={`grid-${i}`}
-              x1="0"
-              y1={y}
-              x2="100"
-              y2={y}
-              stroke="rgba(139, 69, 19, 0.1)"
-              strokeWidth="0.5"
-            />
-          ))}
-          
-          {/* Data line */}
-          <polyline
-            points={points}
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          
-          {/* Data points */}
-          {data.map((item, index) => {
-            const x = (index / xDenom) * 100;
-            const y = 100 - (item.value / maxValue) * 100;
-            return (
-              <g key={index}>
-                <circle
-                  cx={x}
-                  cy={y}
-                  r="3"
-                  fill={color}
-                  stroke="white"
-                  strokeWidth="2"
-                  style={{ cursor: 'pointer' }}
-                  title={`${item.label}: ${item.value}`}
-                />
-                <text
-                  x={x}
-                  y={y - 8}
-                  textAnchor="middle"
-                  fontSize="8"
-                  fill="#8b4513"
-                  fontWeight="600"
-                >
-                  {item.value}
-                </text>
-              </g>
-            );
-          })}
-        </svg>
-        
-        {/* X-axis labels */}
-        <div style={{
-          position: 'absolute',
-          bottom: '0',
-          left: '0',
-          right: '0',
-          height: '30px',
+      <div
+        style={{
           display: 'flex',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-          padding: '0 10px',
-          fontSize: '12px',
-          color: '#a0826d'
-        }}>
+          flexDirection: 'column',
+          height: `${height}px`,
+          marginTop: '12px',
+          minHeight: 0,
+        }}
+      >
+        <div style={{ flex: '1 1 auto', minHeight: 0, position: 'relative' }}>
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            style={{ overflow: 'visible', display: 'block' }}
+          >
+            {gridYs.map((gy, i) => (
+              <line
+                key={`grid-${i}`}
+                x1="0"
+                y1={gy}
+                x2="100"
+                y2={gy}
+                stroke="rgba(139, 69, 19, 0.1)"
+                strokeWidth="0.5"
+              />
+            ))}
+
+            <polyline
+              points={points}
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+
+            {data.map((item, index) => {
+              const x = (index / last) * 100;
+              const y = yForValue(item.value);
+              return (
+                <g key={index}>
+                  <circle
+                    cx={x}
+                    cy={y}
+                    r="3"
+                    fill={color}
+                    stroke="white"
+                    strokeWidth="2"
+                    style={{ cursor: 'pointer' }}
+                    title={`${item.label}: ${item.value}`}
+                  />
+                  <text
+                    x={x}
+                    y={y - 6}
+                    textAnchor="middle"
+                    fontSize="8"
+                    fill="#8b4513"
+                    fontWeight="600"
+                  >
+                    {item.value}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+
+        <div
+          style={{
+            flexShrink: 0,
+            minHeight: '34px',
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            padding: '8px 10px 0',
+            fontSize: '12px',
+            color: '#a0826d',
+          }}
+        >
           {data.map((item, index) => (
             <span key={index} style={{ textAlign: 'center' }}>
               {item.label}

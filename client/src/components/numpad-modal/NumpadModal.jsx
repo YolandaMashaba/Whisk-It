@@ -1,4 +1,4 @@
-import Button from './button/Button';
+import Button from '../button/Button';
 
 const keys = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.', 'C'];
 
