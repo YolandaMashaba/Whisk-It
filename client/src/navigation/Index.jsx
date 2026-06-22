@@ -1,7 +1,7 @@
 import React, {  } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ProtectedRoute, AppLayout } from '@/components/Index';
-import { Login, Register, Dashboard, Kitchen, SalesTerminal } from '@/views/Index';
+import { Login, Register, StaffLogin, Dashboard, Kitchen, SalesTerminal } from '@/views/Index';
 
 export default function AppNavigation() {
     return (
@@ -9,6 +9,7 @@ export default function AppNavigation() {
             <Route element={<AppLayout />}>
                 <Route index element={<SalesTerminal />} />
                 <Route path="login" element={<Login />} />
+                <Route path="staff/login" element={<StaffLogin />} />
                 <Route path="register" element={<Register />} />
                 <Route
                     path="kitchen"

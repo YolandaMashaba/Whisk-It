@@ -75,8 +75,12 @@ export default function Register() {
                 </Button>
                 <p className="mt-4 text-center text-sm text-[#a0826d]">
                     Already have an account?{' '}
+                    <Link to="/staff/login" className="font-semibold text-[#8b4513] underline">
+                        Staff sign in
+                    </Link>
+                    {' '}or{' '}
                     <Link to="/login" className="font-semibold text-[#8b4513] underline">
-                        Sign in
+                        Admin sign in
                     </Link>
                 </p>
             </form>

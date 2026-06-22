@@ -3,6 +3,7 @@ export { default as SalesAnalytics } from './admin/SalesAnalytics';
 export { default as SystemConfig } from './admin/SystemConfig';
 export { default as Login } from './auth/Login';
 export { default as Register } from './auth/Register';
+export { default as StaffLogin } from './auth/StaffLogin';
 export { default as Dashboard } from './admin/Dashboard';
 export { default as Kitchen } from './kitchen/Kitchen';
 export { default as SalesTerminal } from './sales/SalesTerminal';

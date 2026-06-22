@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { ChefHat, CupSoda, LayoutDashboard, LogIn, LogOut, UserPlus } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
@@ -11,6 +11,13 @@ function navClass({ isActive }) {
 
 export default function AppLayout() {
     const { isAuthenticated, isAdmin, logout, user } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        const loginPath = isAdmin ? '/login' : '/staff/login';
+        logout();
+        navigate(loginPath);
+    };
 
     return (
         <div className="flex min-h-screen flex-col bg-[#fefcf8]">
@@ -39,15 +46,19 @@ export default function AppLayout() {
                                 <UserPlus size={18} aria-hidden />
                                 Register
                             </NavLink>
-                            <NavLink to="/login" className={navClass}>
+                            <NavLink to="/staff/login" className={navClass}>
                                 <LogIn size={18} aria-hidden />
                                 Staff login
+                            </NavLink>
+                            <NavLink to="/login" className={navClass}>
+                                <LogIn size={18} aria-hidden />
+                                Admin login
                             </NavLink>
                         </>
                     ) : (
                         <button
                             type="button"
-                            onClick={logout}
+                            onClick={handleLogout}
                             className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-[#8b4513] hover:bg-amber-100/80"
                         >
                             <LogOut size={18} aria-hidden />

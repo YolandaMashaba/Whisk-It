@@ -21,7 +21,7 @@
       "name": "gwinya",
       "price": 5,
       "category": "Bread",
-      "stock_quantity": 14,
+      "stock_quantity": 11,
       "active": 1
     },
     {
@@ -29,7 +29,7 @@
       "name": "latte",
       "price": 24,
       "category": "Coffee",
-      "stock_quantity": 11,
+      "stock_quantity": 9,
       "active": 1
     }
   ],
@@ -45,6 +45,24 @@
       "total_amount": 24,
       "status": "completed",
       "created_at": "2026-05-13T21:15:15.857Z"
+    },
+    {
+      "id": 3,
+      "total_amount": 29,
+      "status": "completed",
+      "created_at": "2026-06-22T17:48:56.374Z"
+    },
+    {
+      "id": 4,
+      "total_amount": 29,
+      "status": "completed",
+      "created_at": "2026-06-22T17:49:14.686Z"
+    },
+    {
+      "id": 5,
+      "total_amount": 5,
+      "status": "completed",
+      "created_at": "2026-06-22T20:24:52.126Z"
     }
   ],
   "orderItems": [
@@ -61,6 +79,41 @@
       "item_id": 2,
       "quantity": 1,
       "price": 24
+    },
+    {
+      "id": 3,
+      "order_id": 3,
+      "item_id": 2,
+      "quantity": 1,
+      "price": 24
+    },
+    {
+      "id": 4,
+      "order_id": 3,
+      "item_id": 1,
+      "quantity": 1,
+      "price": 5
+    },
+    {
+      "id": 5,
+      "order_id": 4,
+      "item_id": 2,
+      "quantity": 1,
+      "price": 24
+    },
+    {
+      "id": 6,
+      "order_id": 4,
+      "item_id": 1,
+      "quantity": 1,
+      "price": 5
+    },
+    {
+      "id": 7,
+      "order_id": 5,
+      "item_id": 1,
+      "quantity": 1,
+      "price": 5
     }
   ]
 }
