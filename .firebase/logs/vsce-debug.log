@@ -1,0 +1,247 @@
+[debug] [2026-05-18T09:34:38.418Z] [Firebase Plugin] Activating Firebase extension.
+[debug] [2026-05-18T09:34:49.773Z] [Firebase Plugin] requireAuthWrapper
+[debug] [2026-05-18T09:34:49.776Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-18T09:34:49.777Z] > authorizing via signed-in user (zwanefistos88@gmail.com)
+[debug] [2026-05-18T09:34:49.783Z] Checked if tokens are valid: false, expires at: 1778615910878
+[debug] [2026-05-18T09:34:49.784Z] Checked if tokens are valid: false, expires at: 1778615910878
+[debug] [2026-05-18T09:34:49.784Z] > refreshing access token with scopes: []
+[debug] [2026-05-18T09:34:49.788Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-05-18T09:34:49.788Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-05-18T09:34:49.856Z] [Firebase Plugin] VSCode notification server listening on port 40001
+[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.5) on port 50001
+[debug] [2026-05-18T09:34:59.705Z] I0518 11:34:59.371456   61636 control.go:100] [projects/emulator/locations/emulator/services/whisk-it cd65] UpdateResources(): done
+Main schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0518 11:34:59.371456   61636 control.go:100] [projects/emulator/locations/emulator/services/whisk-it cd65] UpdateResources(): done\nMain schema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2026-05-18T09:34:59.708Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2026-05-18T09:35:00.552Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2026-05-18T09:35:00.552Z] Starting SQL Connect Emulator with command {"binary":"C:\\Users\\Home\\.cache\\firebase\\emulators\\dataconnect-emulator-3.4.5.exe","args":["--logtostderr","-v=2","dev","--listen=localhost:50001","--config_dir=c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\dataconnect","--enable_output_schema_extensions=true","--enable_output_generated_sdk=true"],"optionalArgs":["listen","config_dir","enable_output_schema_extensions","enable_output_generated_sdk"],"joinArgs":true,"shell":false,"port":9399} {"metadata":{"emulator":{"name":"dataconnect"},"message":"Starting SQL Connect Emulator with command {\"binary\":\"C:\\\\Users\\\\Home\\\\.cache\\\\firebase\\\\emulators\\\\dataconnect-emulator-3.4.5.exe\",\"args\":[\"--logtostderr\",\"-v=2\",\"dev\",\"--listen=localhost:50001\",\"--config_dir=c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\dataconnect\",\"--enable_output_schema_extensions=true\",\"--enable_output_generated_sdk=true\"],\"optionalArgs\":[\"listen\",\"config_dir\",\"enable_output_schema_extensions\",\"enable_output_generated_sdk\"],\"joinArgs\":true,\"shell\":false,\"port\":9399}"}}
+[info] i  dataconnect: SQL Connect Emulator logging to dataconnect-debug.log {"metadata":{"emulator":{"name":"dataconnect"},"message":"SQL Connect Emulator logging to \u001b[1mdataconnect-debug.log\u001b[22m"}}
+[debug] [2026-05-18T09:35:01.722Z] I0518 11:35:01.140042   61616 load.go:31] Reloading schema and connectors...
+I0518 11:35:01.411681   61616 control.go:100] [projects/emulator/locations/emulator/services/whisk-it ce05] UpdateResources(): done
+Main schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+I0518 11:35:01.513256   61616 codegen.go:101] [connector "example" adminSdk] Generating sources into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\server\\src\\dataconnect-admin-generated"
+I0518 11:35:01.563823   61616 collector.go:107] schema extensions wrote into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\dataconnect\\.dataconnect\\schema"
+Generated sources: prelude.gql [82799B] main\implicit.gql [1261B] main\input.gql [28927B] main\relation.gql [14318B] main\query.gql [5099B] main\mutation.gql [13679B] 
+I0518 11:35:01.577311   61616 collector.go:107] connector "example" adminSdk wrote into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\server\\src\\dataconnect-admin-generated"
+Generated sources: index.d.ts [7666B] esm\index.esm.js [2978B] esm\package.json [17B] index.cjs.js [3271B] package.json [632B] 
+I0518 11:35:01.668400   61616 installsdk.go:55] Package @dataconnect/admin-generated is already installed. Skipping installation
+I0518 11:35:01.668722   61616 load.go:109] Finished reloading
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0518 11:35:01.140042   61616 load.go:31] Reloading schema and connectors...\nI0518 11:35:01.411681   61616 control.go:100] [projects/emulator/locations/emulator/services/whisk-it ce05] UpdateResources(): done\nMain schema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \nI0518 11:35:01.513256   61616 codegen.go:101] [connector \"example\" adminSdk] Generating sources into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\server\\\\src\\\\dataconnect-admin-generated\"\nI0518 11:35:01.563823   61616 collector.go:107] schema extensions wrote into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\dataconnect\\\\.dataconnect\\\\schema\"\nGenerated sources: prelude.gql [82799B] main\\implicit.gql [1261B] main\\input.gql [28927B] main\\relation.gql [14318B] main\\query.gql [5099B] main\\mutation.gql [13679B] \nI0518 11:35:01.577311   61616 collector.go:107] connector \"example\" adminSdk wrote into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\server\\\\src\\\\dataconnect-admin-generated\"\nGenerated sources: index.d.ts [7666B] esm\\index.esm.js [2978B] esm\\package.json [17B] index.cjs.js [3271B] package.json [632B] \nI0518 11:35:01.668400   61616 installsdk.go:55] Package @dataconnect/admin-generated is already installed. Skipping installation\nI0518 11:35:01.668722   61616 load.go:109] Finished reloading\n"}}
+[debug] [2026-05-18T09:35:01.847Z] I0518 11:35:01.767843   61616 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:50001
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0518 11:35:01.767843   61616 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:50001\n"}}
+[debug] [2026-05-18T09:35:02.296Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-05-18T09:35:02.296Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-05-18T09:35:02.353Z] [Firebase Plugin] User found:  zwanefistos88@gmail.com
+[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects
+[debug] [2026-05-18T09:35:02.356Z] Checked if tokens are valid: true, expires at: 1779100501297
+[debug] [2026-05-18T09:35:02.358Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2026-05-18T09:35:03.552Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-05-18T09:35:03.552Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[debug] [2026-05-18T09:35:03.680Z] I0518 11:35:03.672743   61616 engine.go:209] [projects/emulator/locations/emulator/services/whisk-it ce05] ExecuteGraphqlRead query IntrospectionQuery: succeeded. 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0518 11:35:03.672743   61616 engine.go:209] [projects/emulator/locations/emulator/services/whisk-it ce05] ExecuteGraphqlRead query IntrospectionQuery: succeeded. \n"}}
+[info] [Firebase Plugin] Stopping SQL Connect toolkit
+[warn] !  SQL Connect Emulator has exited upon receiving signal: SIGINT 
+[debug] [2026-06-19T19:23:51.174Z] [Firebase Plugin] Activating Firebase extension.
+[debug] [2026-06-19T19:23:56.028Z] [Firebase Plugin] requireAuthWrapper
+[debug] [2026-06-19T19:23:56.031Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-19T19:23:56.032Z] > authorizing via signed-in user (zwanefistos88@gmail.com)
+[debug] [2026-06-19T19:23:56.038Z] Checked if tokens are valid: true, expires at: 1781900609268
+[debug] [2026-06-19T19:23:56.039Z] Checked if tokens are valid: true, expires at: 1781900609268
+[debug] [2026-06-19T19:23:56.040Z] [Firebase Plugin] User found:  zwanefistos88@gmail.com
+[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects
+[debug] [2026-06-19T19:23:56.042Z] Checked if tokens are valid: true, expires at: 1781900609268
+[debug] [2026-06-19T19:23:56.046Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2026-06-19T19:23:56.083Z] [Firebase Plugin] VSCode notification server listening on port 40001
+[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.11) on port 50001
+[info] i  dataconnect: downloading dataconnect-emulator-3.4.11.exe... {"metadata":{"emulator":{"name":"dataconnect"},"message":"downloading dataconnect-emulator-3.4.11.exe..."}}
+[debug] [2026-06-19T19:23:57.440Z] >>> [apiv2][query] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-windows-amd64-v3.4.11 
+[debug] [2026-06-19T19:24:00.255Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-06-19T19:24:00.256Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[debug] [2026-06-19T19:24:06.187Z] <<< [apiv2][status] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-windows-amd64-v3.4.11 200
+[debug] [2026-06-19T19:24:06.189Z] <<< [apiv2][body] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-windows-amd64-v3.4.11 [stream]
+[info] [Firebase Plugin] Stopping SQL Connect toolkit
+[debug] [2026-06-19T19:25:02.564Z] [Firebase Plugin] Activating Firebase extension.
+[debug] [2026-06-19T19:25:10.360Z] [Firebase Plugin] requireAuthWrapper
+[debug] [2026-06-19T19:25:10.363Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-19T19:25:10.363Z] > authorizing via signed-in user (zwanefistos88@gmail.com)
+[debug] [2026-06-19T19:25:10.370Z] Checked if tokens are valid: true, expires at: 1781900609268
+[debug] [2026-06-19T19:25:10.370Z] Checked if tokens are valid: true, expires at: 1781900609268
+[debug] [2026-06-19T19:25:10.371Z] [Firebase Plugin] User found:  zwanefistos88@gmail.com
+[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects
+[debug] [2026-06-19T19:25:10.373Z] Checked if tokens are valid: true, expires at: 1781900609268
+[debug] [2026-06-19T19:25:10.375Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2026-06-19T19:25:10.410Z] [Firebase Plugin] VSCode notification server listening on port 40001
+[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.11) on port 50001
+[info] i  dataconnect: downloading dataconnect-emulator-3.4.11.exe... {"metadata":{"emulator":{"name":"dataconnect"},"message":"downloading dataconnect-emulator-3.4.11.exe..."}}
+[debug] [2026-06-19T19:25:11.122Z] >>> [apiv2][query] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-windows-amd64-v3.4.11 
+[debug] [2026-06-19T19:25:11.874Z] <<< [apiv2][status] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-windows-amd64-v3.4.11 200
+[debug] [2026-06-19T19:25:11.875Z] <<< [apiv2][body] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-windows-amd64-v3.4.11 [stream]
+[debug] [2026-06-19T19:25:12.187Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-06-19T19:25:12.188Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  dataconnect: Removing outdated emulator files: dataconnect-emulator-3.4.5.exe {"metadata":{"emulator":{"name":"dataconnect"},"message":"Removing outdated emulator files: dataconnect-emulator-3.4.5.exe"}}
+[debug] [2026-06-19T19:26:57.427Z] I0619 21:26:57.354765   72200 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 90f6] UpdateResources(): done
+Main schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0619 21:26:57.354765   72200 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 90f6] UpdateResources(): done\nMain schema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2026-06-19T19:26:57.432Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2026-06-19T19:26:57.433Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2026-06-19T19:26:57.434Z] Starting SQL Connect Emulator with command {"binary":"C:\\Users\\Home\\.cache\\firebase\\emulators\\dataconnect-emulator-3.4.11.exe","args":["--logtostderr","-v=2","dev","--listen=localhost:50001","--config_dir=c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\dataconnect","--enable_output_schema_extensions=true","--enable_output_generated_sdk=true"],"optionalArgs":["listen","config_dir","enable_output_schema_extensions","enable_output_generated_sdk"],"joinArgs":true,"shell":false,"port":9399} {"metadata":{"emulator":{"name":"dataconnect"},"message":"Starting SQL Connect Emulator with command {\"binary\":\"C:\\\\Users\\\\Home\\\\.cache\\\\firebase\\\\emulators\\\\dataconnect-emulator-3.4.11.exe\",\"args\":[\"--logtostderr\",\"-v=2\",\"dev\",\"--listen=localhost:50001\",\"--config_dir=c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\dataconnect\",\"--enable_output_schema_extensions=true\",\"--enable_output_generated_sdk=true\"],\"optionalArgs\":[\"listen\",\"config_dir\",\"enable_output_schema_extensions\",\"enable_output_generated_sdk\"],\"joinArgs\":true,\"shell\":false,\"port\":9399}"}}
+[info] i  dataconnect: SQL Connect Emulator logging to dataconnect-debug.log {"metadata":{"emulator":{"name":"dataconnect"},"message":"SQL Connect Emulator logging to \u001b[1mdataconnect-debug.log\u001b[22m"}}
+[debug] [2026-06-19T19:26:57.638Z] I0619 21:26:57.637888   51412 load.go:31] Reloading schema and connectors...
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0619 21:26:57.637888   51412 load.go:31] Reloading schema and connectors...\n"}}
+[debug] [2026-06-19T19:26:57.664Z] I0619 21:26:57.664180   51412 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 56e5] UpdateResources(): done
+Main schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\queries.gql [1801B] example\mutations.gql [1243B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0619 21:26:57.664180   51412 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 56e5] UpdateResources(): done\nMain schema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\queries.gql [1801B] example\\mutations.gql [1243B] \n"}}
+[debug] [2026-06-19T19:26:57.691Z] I0619 21:26:57.689226   51412 codegen.go:101] [connector "example" adminSdk] Generating sources into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\server\\src\\dataconnect-admin-generated"
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0619 21:26:57.689226   51412 codegen.go:101] [connector \"example\" adminSdk] Generating sources into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\server\\\\src\\\\dataconnect-admin-generated\"\n"}}
+[debug] [2026-06-19T19:26:57.706Z] I0619 21:26:57.706683   51412 collector.go:107] schema extensions wrote into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\dataconnect\\.dataconnect\\schema"
+Generated sources: prelude.gql [84995B] main\implicit.gql [1261B] main\input.gql [29168B] main\relation.gql [14318B] main\query.gql [5099B] main\mutation.gql [13679B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0619 21:26:57.706683   51412 collector.go:107] schema extensions wrote into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\dataconnect\\\\.dataconnect\\\\schema\"\nGenerated sources: prelude.gql [84995B] main\\implicit.gql [1261B] main\\input.gql [29168B] main\\relation.gql [14318B] main\\query.gql [5099B] main\\mutation.gql [13679B] \n"}}
+[debug] [2026-06-19T19:26:57.724Z] I0619 21:26:57.717854   51412 collector.go:107] connector "example" adminSdk wrote into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\server\\src\\dataconnect-admin-generated"
+Generated sources: index.d.ts [7648B] esm\index.esm.js [2978B] esm\package.json [17B] index.cjs.js [3271B] package.json [632B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0619 21:26:57.717854   51412 collector.go:107] connector \"example\" adminSdk wrote into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\server\\\\src\\\\dataconnect-admin-generated\"\nGenerated sources: index.d.ts [7648B] esm\\index.esm.js [2978B] esm\\package.json [17B] index.cjs.js [3271B] package.json [632B] \n"}}
+[debug] [2026-06-19T19:26:57.838Z] I0619 21:26:57.837933   51412 installsdk.go:55] Package @dataconnect/admin-generated is already installed. Skipping installation
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0619 21:26:57.837933   51412 installsdk.go:55] Package @dataconnect/admin-generated is already installed. Skipping installation\n"}}
+[debug] [2026-06-19T19:26:57.839Z] I0619 21:26:57.838445   51412 load.go:109] Finished reloading
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0619 21:26:57.838445   51412 load.go:109] Finished reloading\n"}}
+[debug] [2026-06-19T19:26:57.897Z] I0619 21:26:57.895249   51412 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:50001
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0619 21:26:57.895249   51412 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:50001\n"}}
+[debug] [2026-06-19T19:26:58.160Z] I0619 21:26:58.157469   51412 engine.go:209] [projects/emulator/locations/emulator/services/whisk-it 56e5] ExecuteGraphqlRead query IntrospectionQuery: succeeded. 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0619 21:26:58.157469   51412 engine.go:209] [projects/emulator/locations/emulator/services/whisk-it 56e5] ExecuteGraphqlRead query IntrospectionQuery: succeeded. \n"}}
+[info] [Firebase Plugin] Stopping SQL Connect toolkit
+[warn] !  SQL Connect Emulator has exited upon receiving signal: SIGINT 
+[debug] [2026-06-21T16:51:51.821Z] [Firebase Plugin] Activating Firebase extension.
+[debug] [2026-06-21T16:52:03.830Z] [Firebase Plugin] requireAuthWrapper
+[debug] [2026-06-21T16:52:03.838Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-21T16:52:03.840Z] > authorizing via signed-in user (zwanefistos88@gmail.com)
+[debug] [2026-06-21T16:52:03.862Z] Checked if tokens are valid: false, expires at: 1781900609268
+[debug] [2026-06-21T16:52:03.865Z] Checked if tokens are valid: false, expires at: 1781900609268
+[debug] [2026-06-21T16:52:03.867Z] > refreshing access token with scopes: []
+[debug] [2026-06-21T16:52:03.878Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-06-21T16:52:03.879Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-06-21T16:52:03.965Z] [Firebase Plugin] VSCode notification server listening on port 40001
+[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.11) on port 50001
+[debug] [2026-06-21T16:52:05.563Z] I0621 18:52:05.527670   69340 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 27f9] UpdateResources(): done
+Main schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0621 18:52:05.527670   69340 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 27f9] UpdateResources(): done\nMain schema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2026-06-21T16:52:05.566Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2026-06-21T16:52:05.567Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2026-06-21T16:52:05.568Z] Starting SQL Connect Emulator with command {"binary":"C:\\Users\\Home\\.cache\\firebase\\emulators\\dataconnect-emulator-3.4.11.exe","args":["--logtostderr","-v=2","dev","--listen=localhost:50001","--config_dir=c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\dataconnect","--enable_output_schema_extensions=true","--enable_output_generated_sdk=true"],"optionalArgs":["listen","config_dir","enable_output_schema_extensions","enable_output_generated_sdk"],"joinArgs":true,"shell":false,"port":9399} {"metadata":{"emulator":{"name":"dataconnect"},"message":"Starting SQL Connect Emulator with command {\"binary\":\"C:\\\\Users\\\\Home\\\\.cache\\\\firebase\\\\emulators\\\\dataconnect-emulator-3.4.11.exe\",\"args\":[\"--logtostderr\",\"-v=2\",\"dev\",\"--listen=localhost:50001\",\"--config_dir=c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\dataconnect\",\"--enable_output_schema_extensions=true\",\"--enable_output_generated_sdk=true\"],\"optionalArgs\":[\"listen\",\"config_dir\",\"enable_output_schema_extensions\",\"enable_output_generated_sdk\"],\"joinArgs\":true,\"shell\":false,\"port\":9399}"}}
+[info] i  dataconnect: SQL Connect Emulator logging to dataconnect-debug.log {"metadata":{"emulator":{"name":"dataconnect"},"message":"SQL Connect Emulator logging to \u001b[1mdataconnect-debug.log\u001b[22m"}}
+[debug] [2026-06-21T16:52:05.839Z] I0621 18:52:05.689099   39548 load.go:31] Reloading schema and connectors...
+I0621 18:52:05.721773   39548 control.go:100] [projects/emulator/locations/emulator/services/whisk-it e497] UpdateResources(): done
+Main schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+I0621 18:52:05.766571   39548 codegen.go:101] [connector "example" adminSdk] Generating sources into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\server\\src\\dataconnect-admin-generated"
+I0621 18:52:05.789003   39548 collector.go:107] schema extensions wrote into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\dataconnect\\.dataconnect\\schema"
+Generated sources: main\relation.gql [14318B] main\query.gql [5099B] main\mutation.gql [13679B] prelude.gql [84995B] main\implicit.gql [1261B] main\input.gql [29168B] 
+I0621 18:52:05.802884   39548 collector.go:107] connector "example" adminSdk wrote into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\server\\src\\dataconnect-admin-generated"
+Generated sources: index.d.ts [7648B] esm\index.esm.js [2978B] esm\package.json [17B] index.cjs.js [3271B] package.json [632B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0621 18:52:05.689099   39548 load.go:31] Reloading schema and connectors...\nI0621 18:52:05.721773   39548 control.go:100] [projects/emulator/locations/emulator/services/whisk-it e497] UpdateResources(): done\nMain schema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \nI0621 18:52:05.766571   39548 codegen.go:101] [connector \"example\" adminSdk] Generating sources into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\server\\\\src\\\\dataconnect-admin-generated\"\nI0621 18:52:05.789003   39548 collector.go:107] schema extensions wrote into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\dataconnect\\\\.dataconnect\\\\schema\"\nGenerated sources: main\\relation.gql [14318B] main\\query.gql [5099B] main\\mutation.gql [13679B] prelude.gql [84995B] main\\implicit.gql [1261B] main\\input.gql [29168B] \nI0621 18:52:05.802884   39548 collector.go:107] connector \"example\" adminSdk wrote into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\server\\\\src\\\\dataconnect-admin-generated\"\nGenerated sources: index.d.ts [7648B] esm\\index.esm.js [2978B] esm\\package.json [17B] index.cjs.js [3271B] package.json [632B] \n"}}
+[debug] [2026-06-21T16:52:05.902Z] I0621 18:52:05.809587   39548 installsdk.go:55] Package @dataconnect/admin-generated is already installed. Skipping installation
+I0621 18:52:05.878632   39548 load.go:109] Finished reloading
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0621 18:52:05.809587   39548 installsdk.go:55] Package @dataconnect/admin-generated is already installed. Skipping installation\nI0621 18:52:05.878632   39548 load.go:109] Finished reloading\n"}}
+[debug] [2026-06-21T16:52:05.952Z] I0621 18:52:05.922429   39548 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:50001
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0621 18:52:05.922429   39548 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:50001\n"}}
+[debug] [2026-06-21T16:52:06.072Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-06-21T16:52:06.073Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-06-21T16:52:06.160Z] [Firebase Plugin] User found:  zwanefistos88@gmail.com
+[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects
+[debug] [2026-06-21T16:52:06.170Z] Checked if tokens are valid: true, expires at: 1782064325074
+[debug] [2026-06-21T16:52:06.172Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2026-06-21T16:52:06.345Z] I0621 18:52:06.344024   39548 engine.go:209] [projects/emulator/locations/emulator/services/whisk-it e497] ExecuteGraphqlRead query IntrospectionQuery: succeeded. 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0621 18:52:06.344024   39548 engine.go:209] [projects/emulator/locations/emulator/services/whisk-it e497] ExecuteGraphqlRead query IntrospectionQuery: succeeded. \n"}}
+[debug] [2026-06-21T16:52:07.414Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-06-21T16:52:07.415Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] [Firebase Plugin] Stopping SQL Connect toolkit
+[warn] !  SQL Connect Emulator has exited upon receiving signal: SIGINT 
+[debug] [2026-06-22T08:08:16.155Z] [Firebase Plugin] Activating Firebase extension.
+[debug] [2026-06-22T08:08:22.259Z] [Firebase Plugin] requireAuthWrapper
+[debug] [2026-06-22T08:08:22.264Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-22T08:08:22.266Z] > authorizing via signed-in user (zwanefistos88@gmail.com)
+[debug] [2026-06-22T08:08:22.274Z] Checked if tokens are valid: false, expires at: 1782064325074
+[debug] [2026-06-22T08:08:22.274Z] Checked if tokens are valid: false, expires at: 1782064325074
+[debug] [2026-06-22T08:08:22.275Z] > refreshing access token with scopes: []
+[debug] [2026-06-22T08:08:22.279Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-06-22T08:08:22.280Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-06-22T08:08:22.312Z] [Firebase Plugin] VSCode notification server listening on port 40001
+[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.11) on port 50001
+[debug] [2026-06-22T08:08:24.543Z] I0622 10:08:24.462554   10392 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 315e] UpdateResources(): done
+Main schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0622 10:08:24.462554   10392 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 315e] UpdateResources(): done\nMain schema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2026-06-22T08:08:24.544Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2026-06-22T08:08:24.545Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2026-06-22T08:08:24.545Z] Starting SQL Connect Emulator with command {"binary":"C:\\Users\\Home\\.cache\\firebase\\emulators\\dataconnect-emulator-3.4.11.exe","args":["--logtostderr","-v=2","dev","--listen=localhost:50001","--config_dir=c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\dataconnect","--enable_output_schema_extensions=true","--enable_output_generated_sdk=true"],"optionalArgs":["listen","config_dir","enable_output_schema_extensions","enable_output_generated_sdk"],"joinArgs":true,"shell":false,"port":9399} {"metadata":{"emulator":{"name":"dataconnect"},"message":"Starting SQL Connect Emulator with command {\"binary\":\"C:\\\\Users\\\\Home\\\\.cache\\\\firebase\\\\emulators\\\\dataconnect-emulator-3.4.11.exe\",\"args\":[\"--logtostderr\",\"-v=2\",\"dev\",\"--listen=localhost:50001\",\"--config_dir=c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\dataconnect\",\"--enable_output_schema_extensions=true\",\"--enable_output_generated_sdk=true\"],\"optionalArgs\":[\"listen\",\"config_dir\",\"enable_output_schema_extensions\",\"enable_output_generated_sdk\"],\"joinArgs\":true,\"shell\":false,\"port\":9399}"}}
+[info] i  dataconnect: SQL Connect Emulator logging to dataconnect-debug.log {"metadata":{"emulator":{"name":"dataconnect"},"message":"SQL Connect Emulator logging to \u001b[1mdataconnect-debug.log\u001b[22m"}}
+[debug] [2026-06-22T08:08:25.012Z] I0622 10:08:24.891382   81384 load.go:31] Reloading schema and connectors...
+I0622 10:08:24.973609   81384 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 1396] UpdateResources(): done
+Main schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0622 10:08:24.891382   81384 load.go:31] Reloading schema and connectors...\nI0622 10:08:24.973609   81384 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 1396] UpdateResources(): done\nMain schema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2026-06-22T08:08:25.129Z] I0622 10:08:25.013408   81384 codegen.go:101] [connector "example" adminSdk] Generating sources into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\server\\src\\dataconnect-admin-generated"
+I0622 10:08:25.074430   81384 collector.go:107] schema extensions wrote into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\dataconnect\\.dataconnect\\schema"
+Generated sources: main\implicit.gql [1261B] main\input.gql [29168B] main\relation.gql [14318B] prelude.gql [84995B] main\query.gql [5099B] main\mutation.gql [13679B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0622 10:08:25.013408   81384 codegen.go:101] [connector \"example\" adminSdk] Generating sources into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\server\\\\src\\\\dataconnect-admin-generated\"\nI0622 10:08:25.074430   81384 collector.go:107] schema extensions wrote into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\dataconnect\\\\.dataconnect\\\\schema\"\nGenerated sources: main\\implicit.gql [1261B] main\\input.gql [29168B] main\\relation.gql [14318B] prelude.gql [84995B] main\\query.gql [5099B] main\\mutation.gql [13679B] \n"}}
+[debug] [2026-06-22T08:08:25.916Z] I0622 10:08:25.255201   81384 collector.go:107] connector "example" adminSdk wrote into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\server\\src\\dataconnect-admin-generated"
+Generated sources: index.d.ts [7648B] esm\index.esm.js [2978B] esm\package.json [17B] index.cjs.js [3271B] package.json [632B] 
+I0622 10:08:25.512633   81384 installsdk.go:55] Package @dataconnect/admin-generated is already installed. Skipping installation
+I0622 10:08:25.513148   81384 load.go:109] Finished reloading
+I0622 10:08:25.572060   81384 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:50001
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0622 10:08:25.255201   81384 collector.go:107] connector \"example\" adminSdk wrote into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\server\\\\src\\\\dataconnect-admin-generated\"\nGenerated sources: index.d.ts [7648B] esm\\index.esm.js [2978B] esm\\package.json [17B] index.cjs.js [3271B] package.json [632B] \nI0622 10:08:25.512633   81384 installsdk.go:55] Package @dataconnect/admin-generated is already installed. Skipping installation\nI0622 10:08:25.513148   81384 load.go:109] Finished reloading\nI0622 10:08:25.572060   81384 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:50001\n"}}
+[debug] [2026-06-22T08:08:26.784Z] I0622 10:08:26.683978   81384 engine.go:209] [projects/emulator/locations/emulator/services/whisk-it 1396] ExecuteGraphqlRead query IntrospectionQuery: succeeded. 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0622 10:08:26.683978   81384 engine.go:209] [projects/emulator/locations/emulator/services/whisk-it 1396] ExecuteGraphqlRead query IntrospectionQuery: succeeded. \n"}}
+[debug] [2026-06-22T08:08:26.979Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-06-22T08:08:26.980Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-06-22T08:08:27.053Z] [Firebase Plugin] User found:  zwanefistos88@gmail.com
+[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects
+[debug] [2026-06-22T08:08:27.059Z] Checked if tokens are valid: true, expires at: 1782119305981
+[debug] [2026-06-22T08:08:27.062Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2026-06-22T08:08:28.240Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-06-22T08:08:28.241Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] [Firebase Plugin] Stopping SQL Connect toolkit
+[warn] !  SQL Connect Emulator has exited upon receiving signal: SIGINT 
+[debug] [2026-06-22T08:39:23.365Z] [Firebase Plugin] Activating Firebase extension.
+[debug] [2026-06-22T08:39:28.283Z] [Firebase Plugin] requireAuthWrapper
+[debug] [2026-06-22T08:39:28.285Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-22T08:39:28.286Z] > authorizing via signed-in user (zwanefistos88@gmail.com)
+[debug] [2026-06-22T08:39:28.290Z] Checked if tokens are valid: true, expires at: 1782119305981
+[debug] [2026-06-22T08:39:28.291Z] Checked if tokens are valid: true, expires at: 1782119305981
+[debug] [2026-06-22T08:39:28.291Z] [Firebase Plugin] User found:  zwanefistos88@gmail.com
+[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects
+[debug] [2026-06-22T08:39:28.294Z] Checked if tokens are valid: true, expires at: 1782119305981
+[debug] [2026-06-22T08:39:28.296Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2026-06-22T08:39:28.325Z] [Firebase Plugin] VSCode notification server listening on port 40001
+[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.11) on port 50001
+[debug] [2026-06-22T08:39:29.775Z] I0622 10:39:29.746196   56640 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 58f4] UpdateResources(): done
+Main schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0622 10:39:29.746196   56640 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 58f4] UpdateResources(): done\nMain schema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2026-06-22T08:39:29.777Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2026-06-22T08:39:29.778Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2026-06-22T08:39:29.779Z] Starting SQL Connect Emulator with command {"binary":"C:\\Users\\Home\\.cache\\firebase\\emulators\\dataconnect-emulator-3.4.11.exe","args":["--logtostderr","-v=2","dev","--listen=localhost:50001","--config_dir=c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\dataconnect","--enable_output_schema_extensions=true","--enable_output_generated_sdk=true"],"optionalArgs":["listen","config_dir","enable_output_schema_extensions","enable_output_generated_sdk"],"joinArgs":true,"shell":false,"port":9399} {"metadata":{"emulator":{"name":"dataconnect"},"message":"Starting SQL Connect Emulator with command {\"binary\":\"C:\\\\Users\\\\Home\\\\.cache\\\\firebase\\\\emulators\\\\dataconnect-emulator-3.4.11.exe\",\"args\":[\"--logtostderr\",\"-v=2\",\"dev\",\"--listen=localhost:50001\",\"--config_dir=c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\dataconnect\",\"--enable_output_schema_extensions=true\",\"--enable_output_generated_sdk=true\"],\"optionalArgs\":[\"listen\",\"config_dir\",\"enable_output_schema_extensions\",\"enable_output_generated_sdk\"],\"joinArgs\":true,\"shell\":false,\"port\":9399}"}}
+[info] i  dataconnect: SQL Connect Emulator logging to dataconnect-debug.log {"metadata":{"emulator":{"name":"dataconnect"},"message":"SQL Connect Emulator logging to \u001b[1mdataconnect-debug.log\u001b[22m"}}
+[debug] [2026-06-22T08:39:30.098Z] I0622 10:39:29.902496   24696 load.go:31] Reloading schema and connectors...
+I0622 10:39:29.992087   24696 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 2864] UpdateResources(): done
+Main schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0622 10:39:29.902496   24696 load.go:31] Reloading schema and connectors...\nI0622 10:39:29.992087   24696 control.go:100] [projects/emulator/locations/emulator/services/whisk-it 2864] UpdateResources(): done\nMain schema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2026-06-22T08:39:30.184Z] I0622 10:39:30.104089   24696 codegen.go:101] [connector "example" adminSdk] Generating sources into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\server\\src\\dataconnect-admin-generated"
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0622 10:39:30.104089   24696 codegen.go:101] [connector \"example\" adminSdk] Generating sources into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\server\\\\src\\\\dataconnect-admin-generated\"\n"}}
+[debug] [2026-06-22T08:39:30.422Z] I0622 10:39:30.302259   24696 collector.go:107] schema extensions wrote into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\dataconnect\\.dataconnect\\schema"
+Generated sources: prelude.gql [84995B] main\implicit.gql [1261B] main\input.gql [29168B] main\relation.gql [14318B] main\query.gql [5099B] main\mutation.gql [13679B] 
+I0622 10:39:30.408118   24696 collector.go:107] connector "example" adminSdk wrote into "c:\\Users\\Home\\OneDrive\\Desktop\\Whisk-It\\server\\src\\dataconnect-admin-generated"
+Generated sources: esm\index.esm.js [2978B] esm\package.json [17B] index.cjs.js [3271B] package.json [632B] index.d.ts [7648B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0622 10:39:30.302259   24696 collector.go:107] schema extensions wrote into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\dataconnect\\\\.dataconnect\\\\schema\"\nGenerated sources: prelude.gql [84995B] main\\implicit.gql [1261B] main\\input.gql [29168B] main\\relation.gql [14318B] main\\query.gql [5099B] main\\mutation.gql [13679B] \nI0622 10:39:30.408118   24696 collector.go:107] connector \"example\" adminSdk wrote into \"c:\\\\Users\\\\Home\\\\OneDrive\\\\Desktop\\\\Whisk-It\\\\server\\\\src\\\\dataconnect-admin-generated\"\nGenerated sources: esm\\index.esm.js [2978B] esm\\package.json [17B] index.cjs.js [3271B] package.json [632B] index.d.ts [7648B] \n"}}
+[debug] [2026-06-22T08:39:31.027Z] I0622 10:39:30.591349   24696 installsdk.go:55] Package @dataconnect/admin-generated is already installed. Skipping installation
+I0622 10:39:30.599609   24696 load.go:109] Finished reloading
+I0622 10:39:30.685508   24696 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:50001
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0622 10:39:30.591349   24696 installsdk.go:55] Package @dataconnect/admin-generated is already installed. Skipping installation\nI0622 10:39:30.599609   24696 load.go:109] Finished reloading\nI0622 10:39:30.685508   24696 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:50001\n"}}
+[debug] [2026-06-22T08:39:31.339Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-06-22T08:39:31.340Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[debug] [2026-06-22T08:39:31.476Z] I0622 10:39:31.445694   24696 engine.go:209] [projects/emulator/locations/emulator/services/whisk-it 2864] ExecuteGraphqlRead query IntrospectionQuery: succeeded. 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0622 10:39:31.445694   24696 engine.go:209] [projects/emulator/locations/emulator/services/whisk-it 2864] ExecuteGraphqlRead query IntrospectionQuery: succeeded. \n"}}
